@@ -18,51 +18,71 @@ namespace Calculadora
         public Form1()
         {
             InitializeComponent();
-            this.Text = "Ejemplos de Tipos";
-
-           
-            texto1.Top = 30;
-            texto1.Left = 30;
-
-            texto2.Top = 60;
-            texto2.Left = 30;
             
-            // otra forma de establecer posición
-            boton.Location = new System.Drawing.Point(30, 90);
+        }
+        int num1, num2, rpta;
+        string operacion;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
 
-            boton.Text = "Sumar";
-
-            // vincular al botón el evento click
-            boton.Click += new System.EventHandler(boton_Click);
-            
-            // agregando controles al formulario
-            this.Controls.Add(texto1);
-            this.Controls.Add(texto2);
-            this.Controls.Add(boton);
         }
 
+        private void btnRPTA_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void btnSuma_Click(object sender, EventArgs e)
+        {
+            operacion = "+";
+            num1 = int.Parse(txtnum1.Text);
+            txtnum1.Text = "";
+        }
+
+        private void btnResta_Click(object sender, EventArgs e)
+        {
+            operacion = "-";
+            num1 = int.Parse(txtnum1.Text);
+            txtnum1.Text = "";
+        }
+
+        private void btnMultiplicacion_Click(object sender, EventArgs e)
+        {
+            operacion = "*";
+            num1 = int.Parse(txtnum1.Text);
+            txtnum1.Text = "";
+                    }
+
+        private void btndivision_Click(object sender, EventArgs e)
+        {
+            operacion = "/";
+            num1 = int.Parse(txtnum1.Text);
+            txtnum1.Text = "";
+            
+        }
+
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            num2 = int.Parse(txtnum1.Text);
+            switch (operacion)
+            {
+                case "+":
+                    rpta = num1 + num2;
+                    break;
+                case "-":
+                    rpta = num1 - num2;
+                    break;
+                case "*":
+                    rpta = num1 * num2;
+                    break;
+                case "/":
+                    rpta = num1 / num2;
+                    break;                    
+            }
          
 
-        void boton_Click(object sender, EventArgs e)
-        {
-            
-            if (texto1.Text == "" || texto2.Text == "")
-            {
-                MessageBox.Show("Uno de los textos está vacío", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            if (!(new Regex(@"^[0-9]+$")).IsMatch(texto1.Text) || !(new Regex(@"^[0-9]+$")).IsMatch(texto2.Text))
-            {
-                MessageBox.Show("Uno de los textos no es un número entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-           
-
-            int val1 = Convert.ToInt32(texto1.Text);
-            int val2 = Convert.ToInt32(texto2.Text);
-            int suma = val1 + val2;
-            MessageBox.Show("La suma es igual a " + Convert.ToString(suma), "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+     
 
         private void Form1_Load(object sender, EventArgs e)
         {
